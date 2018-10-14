@@ -4,4 +4,4 @@
 
    2. install dependencies: `npm install`
 
-   3. run the app: `DEBUG=cs467:* npm start`
+   3. run the app: `npm start`
