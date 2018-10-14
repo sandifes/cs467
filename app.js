@@ -1,13 +1,37 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
+var bodyParser = require('body-parser')
 var cookieParser = require('cookie-parser');
+var createError = require('http-errors');
+var env = require('dotenv').load();
+var express = require('express');
 var logger = require('morgan');
+var passport = require('passport')
+var path = require('path');
+var session = require('express-session')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+module.exports = {
+  development: {
+    database: process.env.DB_NAME,
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    dialect: 'mysql',
+  },
+}
+
 var app = express();
+
+// bodyparser setup
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+// passport setup
+app.use(session({ secret: 'vulpecula', resave: true, saveUninitialized:true})); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
