@@ -47,3 +47,17 @@ exports.registerNewUser = function(user, cb) {
       }
     });
 }
+
+exports.findAllUsers = function(cb) {
+  connection.query(
+    "SELECT * FROM users;",
+    function (error, results, fields) {
+      if (error) {
+        console.log(error);
+        cb(error, null);
+      }
+      else {
+        cb(null, results);
+      }
+    });
+}

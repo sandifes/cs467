@@ -3,3 +3,11 @@
 {{else}}
 	<p>Welcome! Please <a href="/login">log in</a> or <a href="/register">register</a>.</p>
 {{/if}}
+
+{{#if user.isAdmin}}
+     <h3>Admin Pages</h3>
+     <ul>
+         <li><a href="/users">Manage Users</a></li>
+         <li><a href="/awards">Manage Awards</a></li>
+     </ul>
+{{/if}}

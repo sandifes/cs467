@@ -30,6 +30,7 @@ passport.use(new Strategy(
       if (err) { return cb(err); }
       if (!user) { return cb(null, false); }
       if (user.password != password) { return cb(null, false); }
+      user.isAdmin = (user.account_type === 1);
       return cb(null, user);
     });
   }));
@@ -48,6 +49,7 @@ passport.serializeUser(function(user, cb) {
 passport.deserializeUser(function(id, cb) {
   db.users.findById(id, function (err, user) {
     if (err) { return cb(err); }
+    user.isAdmin = (user.account_type === 1);
     cb(null, user);
   });
 });
@@ -114,6 +116,31 @@ app.get('/profile',
   function(req, res){
     res.render('profile', { user: req.user });
   })
+
+app.get('/users', 
+  function(req, res) {
+    db.users.findAllUsers(function (err, rows) {
+      if (err) { 
+        res.render('error', { message: 'error finding all users' });
+      }
+      else {
+        res.render('users', { users: rows });
+      }
+    });
+  });
+
+app.get('/awards', 
+  function(req, res) {
+    db.awards.findAllAwards(function (err, rows) {
+      if (err) { 
+        res.render('error', { message: 'error finding all awards' });
+      }
+      else {
+        res.render('awards', { awards: rows });
+      }
+    });
+  });
+  
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
