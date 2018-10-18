@@ -4,20 +4,48 @@
 
 <form action="/register" method="post">
 	<div>
-	<label>Email:</label>
-	<input type="email" name="email"/><br/>
+		<label>Email:</label>
+		<input type="email" name="email"/>
 	</div>
-    <label>First Name:</label>
-	<input type="text" name="firstName"/><br/>
-	</div>
-    <label>Last Name:</label>
-	<input type="text" name="lastName"/><br/>
-	</div>
+
 	<div>
-	<label>Password:</label>
-	<input type="password" name="password"/>
+		<label>Username:</label>
+		<input type="text" name="username"/>
 	</div>
+	
 	<div>
-	<input type="submit" value="Register"/>
+    	<label>First Name:</label>
+		<input type="text" name="firstName"/>
+	</div>
+
+	<div>
+    	<label>Last Name:</label>
+		<input type="text" name="lastName"/>
+	</div>
+
+	<div>
+		<label>Password:</label>
+		<input type="password" name="password"/>
+	</div>
+
+	<div>
+		<label>Account Type:</label>
+		<select name="accountType">
+  			<option value="1">Admin</option>
+  			<option value="2">User</option>
+		</select>
+	</div>
+
+	<div>
+		<label>Department:</label>
+		<select name="department">
+  			<option value="1">Production</option>
+  			<option value="2">Purchasing</option>
+			<option value="3">Accounting</option>
+		</select>
+	</div>
+
+	<div>
+		<input type="submit" value="Register"/>
 	</div>
 </form>

@@ -40,10 +40,15 @@ exports.findByUsername = function(username, cb) {
 
 exports.registerNewUser = function(user, cb) {
   connection.query(
-    "INSERT INTO users (username, firstname, lastname, password) values (?, ?, ?, ?);",
-    [user.email, user.firstName, user.lastName, user.password],
+    "INSERT INTO users (email, username, firstname, lastname, password, account_type, dept_id) values (?, ?, ?, ?, ?, ?, ?);",
+    [user.email, user.username, user.firstName, user.lastName, user.password, user.accountType, user.department],
     function (error, results, fields) {
-      if (error) { cb(error, null); }
-      else { cb(null, results.insertId); }
+      if (error) {
+        console.log(error);
+        cb(error, null);
+      }
+      else {
+        cb(null, results.insertId);
+      }
     });
 }
