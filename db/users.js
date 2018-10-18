@@ -1,8 +1,3 @@
-var records = [
-    { id: 1, username: 'jack', password: 'secret', displayName: 'Jack', email: 'jack@example.com' }
-  , { id: 2, username: 'jill', password: 'birthday', displayName: 'Jill', email: 'jill@example.com' }
-];
-
 var mysql = require('mysql');
 var connection = mysql.createConnection({
   host     : process.env.DB_HOST,
